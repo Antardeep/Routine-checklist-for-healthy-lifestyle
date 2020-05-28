@@ -1,26 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import TodoList from './components/TodoList';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+// function App() {
+//   return (
+//     <div className="App-header">
+//       <Header/>
+//       <TodoList/>
+//       <Footer/>
+//     </div>
+//   );
+// }
+
+class App extends React.Component {
+
+  constructor() {
+    super()
+    this.state = {
+      isLoading: true
+    }
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ isLoading: false})
+    }, 1000)
+  }
+
+  render() {
+    return  (
+      <div className="App-header">
+      <Header/>
+    { this.state.isLoading ? <p>loading....</p> : <TodoList/> }
+      <Footer/>
     </div>
-  );
+    )
+  }
 }
 
 export default App;
